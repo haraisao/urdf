@@ -48,6 +48,7 @@ add_library(${PROJECT_NAME} src/model.cpp src/rosconsole_bridge.cpp)
 target_link_libraries(${PROJECT_NAME} ${TinyXML_LIBRARIES} ${TinyXML2_LIBRARIES} ${catkin_LIBRARIES} ${urdfdom_LIBRARIES})
 
 if(WIN32)
+  add_definitions(-DTIXML_USE_STL)
   target_compile_definitions(${PROJECT_NAME} PRIVATE "URDF_BUILDING_LIBRARY")
 endif()
 
@@ -75,3 +76,10 @@ install(TARGETS ${PROJECT_NAME}
 
 install(DIRECTORY include/${PROJECT_NAME}/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
+
+if(WIN32)
+install(TARGETS ${PROJECT_NAME}
+        RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+        CONFIGURATIONS Release
+)
+endif()
