@@ -7,8 +7,9 @@ find_package(urdfdom_headers REQUIRED)
 find_package(catkin REQUIRED COMPONENTS
   urdf_parser_plugin pluginlib rosconsole_bridge roscpp cmake_modules)
 
-
+if(NOT WIN32)
 find_package(TinyXML REQUIRED)
+endif()
 find_package(TinyXML2 REQUIRED)
 
 # Find version components

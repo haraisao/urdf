@@ -50,8 +50,9 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/scoped_ptr.hpp>
 #include <boost/thread.hpp>
-
+#ifndef WIN32
 #include <tinyxml.h>
+#endif
 #include <tinyxml2.h>
 
 namespace urdf
@@ -105,7 +106,7 @@ bool Model::initParamWithNodeHandle(const std::string & param, const ros::NodeHa
   }
   return Model::initString(xml_string);
 }
-
+#ifndef WIN32
 bool Model::initXml(TiXmlDocument * xml_doc)
 {
   if (!xml_doc) {
@@ -131,7 +132,7 @@ bool Model::initXml(TiXmlElement * robot_xml)
 
   return Model::initString(ss.str());
 }
-
+#endif
 bool Model::initXml(const tinyxml2::XMLDocument *xml_doc)
 {
   if (!xml_doc) {

@@ -42,9 +42,9 @@
 #include <urdf_model/model.h>
 
 #include <urdf/urdfdom_compatibility.h>
-
+#ifndef WIN32
 #include <tinyxml.h>
-
+#endif
 #include <tinyxml2.h>
 
 #include <ros/ros.h>
@@ -57,10 +57,12 @@ namespace urdf
 class Model : public ModelInterface
 {
 public:
+#ifndef WIN32
   /// \brief Load Model from TiXMLElement
   URDF_EXPORT URDF_DEPRECATED("TinyXML API is deprecated, use the TinyXML2 version instead") bool initXml(TiXmlElement * xml);
   /// \brief Load Model from TiXMLDocument
   URDF_EXPORT URDF_DEPRECATED("TinyXML API is deprecated, use the TinyXML2 version instead") bool initXml(TiXmlDocument * xml);
+#endif
   /// \brief Load Model from tinyxml2::XMLElement
   URDF_EXPORT bool initXml(const tinyxml2::XMLElement *xml);
   /// \brief Load Model from tinyxml2::XMLDocument
